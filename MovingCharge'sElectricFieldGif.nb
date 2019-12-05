@@ -1,0 +1,263 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9702,        255]
+NotebookOptionsPosition[      8774,        232]
+NotebookOutlinePosition[      9115,        247]
+CellTagsIndexPosition[      9072,        244]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"electricFieldFunction", "[", "mylist_List", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Evaluate", "[", 
+    RowBox[{"Grad", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"-", "1"}], ")"}], "/", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"x", "-", "nx"}], ")"}], "^", "2"}], ")"}], "+", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"y", "-", "ny"}], ")"}], "^", "2"}], ")"}], "+", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"z", "-", "nz"}], ")"}], "^", "2"}], ")"}]}], "]"}]}], 
+      ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "]"}], "]"}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"nx", "\[Rule]", 
+      RowBox[{"mylist", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+     RowBox[{"ny", "\[Rule]", 
+      RowBox[{"mylist", "[", 
+       RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+     RowBox[{"nz", "\[Rule]", 
+      RowBox[{"mylist", "[", 
+       RowBox[{"[", "3", "]"}], "]"}]}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.784564455075639*^9, 3.784564457906871*^9}, {
+  3.7845759860501657`*^9, 3.7845760262378454`*^9}, {3.7845776610353775`*^9, 
+  3.784577661107382*^9}, {3.784578053916794*^9, 3.7845780553091035`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"23c92b00-acf1-4618-89c2-fc9fc4a594e0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"sumFields", "[", 
+   RowBox[{
+   "numCharges_Integer", ",", "currentStep_Integer", ",", "myArray_"}], "]"}],
+   ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "}"}], ",", 
+    RowBox[{"Sum", "[", 
+     RowBox[{
+      RowBox[{"electricFieldFunction", "[", 
+       RowBox[{"myArray", "[", 
+        RowBox[{"[", 
+         RowBox[{"n", ",", "currentStep", ",", "All"}], "]"}], "]"}], "]"}], 
+      ",", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "1", ",", "numCharges"}], "}"}]}], "]"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.7845629341372986`*^9, 3.7845629614437637`*^9}, {
+   3.7845631969375777`*^9, 3.7845631996217604`*^9}, {3.7845633055784435`*^9, 
+   3.7845633076625996`*^9}, {3.784563363844591*^9, 3.7845633657229533`*^9}, {
+   3.7845634287563105`*^9, 3.7845634327885947`*^9}, 3.784563551327581*^9, 
+   3.784563611907075*^9, {3.784563820387202*^9, 3.7845639532653413`*^9}, {
+   3.784564001322744*^9, 3.7845640200421343`*^9}, {3.784564058133007*^9, 
+   3.784564063867509*^9}, {3.784564205300925*^9, 3.7845642976643295`*^9}, {
+   3.784576414297638*^9, 3.784576415805974*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"38f40734-4461-4ffb-949f-1115f5285d24"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"myMatrix", "=", 
+   RowBox[{"Transpose", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "1", ",", "1", ",", "1", ",", "2", ",", "2", ",", "2"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "1", ",", "1", ",", "1", ",", "2", ",", "2"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", "1", ",", "1", ",", "1", ",", "2"}], 
+       "}"}]}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"my3DMatrix", "=", 
+   RowBox[{"{", 
+    RowBox[{"myMatrix", ",", " ", "myMatrix"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Animate", "[", 
+  RowBox[{
+   RowBox[{"VectorPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{"sumFields", "[", 
+       RowBox[{"2", ",", "currentStep", ",", "my3DMatrix"}], "]"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", 
+       RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "5"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"currentStep", ",", "1", ",", "6", ",", "1"}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.7845778696090617`*^9, 3.7845778932583957`*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"e57a7ef9-cc5f-426e-925d-503261b82c0c"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`currentStep$$ = 4, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`currentStep$$], 1, 6, 1}}, Typeset`size$$ = {
+    360., {205., 209.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`currentStep$2182$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`currentStep$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`currentStep$$, $CellContext`currentStep$2182$$, 0]},
+       "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> VectorPlot3D[
+        Evaluate[
+         $CellContext`sumFields[
+         2, $CellContext`currentStep$$, $CellContext`my3DMatrix]], \
+{$CellContext`x, -5, 5}, {$CellContext`y, -5, 5}, {$CellContext`z, -5, 5}, 
+        PlotRange -> 5], 
+      "Specifications" :> {{$CellContext`currentStep$$, 1, 6, 1, 
+         AppearanceElements -> {
+          "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
+           "DirectionButton"}}}, 
+      "Options" :> {
+       ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
+        "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
+        True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {243., 249.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Animate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.7845781342659316`*^9, 3.7845782172255044`*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"35e977fa-3b82-472e-8e2a-2ebb325e4eff"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ANIM", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"VectorPlot3D", "[", 
+      RowBox[{
+       RowBox[{"Evaluate", "[", 
+        RowBox[{"sumFields", "[", 
+         RowBox[{"2", ",", "currentStep", ",", "my3DMatrix"}], "]"}], "]"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", 
+         RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"y", ",", 
+         RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"z", ",", 
+         RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", "5"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"currentStep", ",", "1", ",", "6", ",", "1"}], "}"}]}], "]"}]}],
+   ";"}], "\n", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<Test.gif\>\"", ",", "ANIM", ",", 
+   RowBox[{"ImageResolution", "\[Rule]", "200"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7845780094912815`*^9, 3.784578024002552*^9}, {
+  3.7845780594900455`*^9, 3.784578060634305*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"c09b6749-1532-41b8-835a-7bc16e275ad5"],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\parke\\\\Downloads\"\>"], "Output",
+ CellChangeTimes->{3.7845781345380187`*^9, 3.7845782182977324`*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"96f59d20-c6f1-4066-987c-a09cb3305c94"],
+
+Cell[BoxData["\<\"Test.gif\"\>"], "Output",
+ CellChangeTimes->{3.7845781345380187`*^9, 3.7845782258356333`*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"e42dac2f-ed12-4966-b5b2-ec667dc5eb78"]
+}, Open  ]]
+},
+WindowSize->{681, 676},
+WindowMargins->{{Automatic, -7}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1483, 41, 67, "Input",ExpressionUUID->"23c92b00-acf1-4618-89c2-fc9fc4a594e0"],
+Cell[2044, 63, 1215, 27, 67, "Input",ExpressionUUID->"38f40734-4461-4ffb-949f-1115f5285d24"],
+Cell[CellGroupData[{
+Cell[3284, 94, 1533, 45, 105, "Input",ExpressionUUID->"e57a7ef9-cc5f-426e-925d-503261b82c0c"],
+Cell[4820, 141, 2268, 44, 511, "Output",ExpressionUUID->"35e977fa-3b82-472e-8e2a-2ebb325e4eff"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7125, 190, 1224, 31, 86, "Input",ExpressionUUID->"c09b6749-1532-41b8-835a-7bc16e275ad5"],
+Cell[8352, 223, 214, 2, 32, "Output",ExpressionUUID->"96f59d20-c6f1-4066-987c-a09cb3305c94"],
+Cell[8569, 227, 189, 2, 89, "Output",ExpressionUUID->"e42dac2f-ed12-4966-b5b2-ec667dc5eb78"]
+}, Open  ]]
+}
+]
+*)
+
