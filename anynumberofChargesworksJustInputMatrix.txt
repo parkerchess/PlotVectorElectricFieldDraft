@@ -1,0 +1,29 @@
+SetDirectory[NotebookDirectory[]];
+
+electricFieldFunction[mylist_List] := 
+ Evaluate[Grad[(-1)/
+     Sqrt[((x - nx)^2) + ((y - ny)^2) + ((z - nz)^2)], {x, y, 
+     z}]] /. {nx -> mylist[[1]], ny -> mylist[[2]], nz -> mylist[[3]]}
+
+sumFields[numCharges_Integer, whichStep_Integer, myArray_] := 
+ Module[{}, 
+  Sum[electricFieldFunction[myArray[[n, whichStep, All]]], {n, 1, 
+    numCharges}]]
+
+createGifTable[any3DMatrix_] := 
+ Table[VectorPlot3D[
+   Evaluate[
+    sumFields[Dimensions[any3DMatrix][[1]], currentStep, 
+     any3DMatrix]], {x, -5, 5}, {y, -5, 5}, {z, -5, 5}, 
+   PlotRange -> 5], {currentStep, 1, Dimensions[any3DMatrix][[2]], 1}]
+
+myMatrix1 = 
+  Transpose[{{0, 1, 1, 1, 2, 2, 2}, {0, 0, 1, 1, 1, 2, 2}, {0, 0, 0, 
+     1, 1, 1, 2}}];
+myMatrix2 = 
+  Transpose[{{0, -1, -1, -1, -2, -2, -2}, {0, 
+     0, -1, -1, -1, -2, -2}, {0, 0, 0, -1, -1, -1, -2}}];
+my3DMatrix = {myMatrix1, myMatrix2}
+
+ANIM = createGifTable[my3DMatrix];
+Export["MovingCharges.gif", ANIM, ImageResolution -> 200]
