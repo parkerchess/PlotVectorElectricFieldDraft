@@ -1,0 +1,445 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     18044,        437]
+NotebookOptionsPosition[     17394,        418]
+NotebookOutlinePosition[     17765,        434]
+CellTagsIndexPosition[     17722,        431]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Don", "'"}], "t", " ", "change", " ", "this", " ", 
+    RowBox[{"stuff", ".", " ", "Just"}], " ", "evaluate", " ", "this", " ", 
+    "cell"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"SetDirectory", "[", 
+     RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"posChargeElectricFieldFunction", "[", "mylist_List", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{"Grad", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"-", "1"}], ")"}], "/", 
+         RowBox[{"Sqrt", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"x", "-", "nx"}], ")"}], "^", "2"}], ")"}], "+", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"y", "-", "ny"}], ")"}], "^", "2"}], ")"}], "+", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"z", "-", "nz"}], ")"}], "^", "2"}], ")"}]}], "]"}]}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "]"}], "]"}], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"nx", "\[Rule]", 
+        RowBox[{"mylist", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+       RowBox[{"ny", "\[Rule]", 
+        RowBox[{"mylist", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+       RowBox[{"nz", "\[Rule]", 
+        RowBox[{"mylist", "[", 
+         RowBox[{"[", "3", "]"}], "]"}]}]}], "}"}]}]}], "\[IndentingNewLine]",
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"negChargeElectricFieldFunction", "[", "mylist_List", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{"Grad", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", "1", ")"}], "/", 
+         RowBox[{"Sqrt", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"x", "-", "nx"}], ")"}], "^", "2"}], ")"}], "+", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"y", "-", "ny"}], ")"}], "^", "2"}], ")"}], "+", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"z", "-", "nz"}], ")"}], "^", "2"}], ")"}]}], "]"}]}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "]"}], "]"}], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"nx", "\[Rule]", 
+        RowBox[{"mylist", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+       RowBox[{"ny", "\[Rule]", 
+        RowBox[{"mylist", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+       RowBox[{"nz", "\[Rule]", 
+        RowBox[{"mylist", "[", 
+         RowBox[{"[", "3", "]"}], "]"}]}]}], "}"}]}]}], "\[IndentingNewLine]",
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"sumFields", "[", 
+     RowBox[{
+     "whichStep_Integer", ",", "myArray_", ",", "numPos_", ",", "numNeg_"}], 
+     "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", 
+      RowBox[{"Evaluate", "[", 
+       RowBox[{
+        RowBox[{"Sum", "[", 
+         RowBox[{
+          RowBox[{"posChargeElectricFieldFunction", "[", 
+           RowBox[{"myArray", "[", 
+            RowBox[{"[", 
+             RowBox[{"n", ",", "whichStep", ",", "All"}], "]"}], "]"}], "]"}],
+           ",", 
+          RowBox[{"{", 
+           RowBox[{"n", ",", "1", ",", "numPos"}], "}"}]}], "]"}], "+", 
+        RowBox[{"Sum", "[", 
+         RowBox[{
+          RowBox[{"negChargeElectricFieldFunction", "[", 
+           RowBox[{"myArray", "[", 
+            RowBox[{"[", 
+             RowBox[{"n", ",", "whichStep", ",", "All"}], "]"}], "]"}], "]"}],
+           ",", 
+          RowBox[{"{", 
+           RowBox[{"n", ",", 
+            RowBox[{"(", 
+             RowBox[{"numPos", "+", "1"}], ")"}], ",", 
+            RowBox[{"(", 
+             RowBox[{"numPos", "+", "numNeg"}], ")"}]}], "}"}]}], "]"}]}], 
+       "]"}]}], "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"createGifTable", "[", 
+     RowBox[{"any3DMatrix_", ",", "numPos_Integer", ",", "numNeg_Integer"}], 
+     "]"}], ":=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"VectorPlot3D", "[", 
+       RowBox[{
+        RowBox[{"Evaluate", "[", 
+         RowBox[{"sumFields", "[", 
+          RowBox[{
+          "currentStep", ",", "any3DMatrix", ",", "numPos", ",", "numNeg"}], 
+          "]"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"y", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"z", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "10"}], ",", 
+        RowBox[{"VectorScale", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"Large", ",", "Large"}], "}"}]}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"currentStep", ",", "1", ",", 
+        RowBox[{
+         RowBox[{"Dimensions", "[", "any3DMatrix", "]"}], "[", 
+         RowBox[{"[", "2", "]"}], "]"}], ",", "1"}], "}"}]}], "]"}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"createNotebookAnimation", "[", 
+     RowBox[{"any3DMatrix_", ",", "numPos_Integer", ",", "numNeg_Integer"}], 
+     "]"}], ":=", 
+    RowBox[{"Animate", "[", 
+     RowBox[{
+      RowBox[{"VectorPlot3D", "[", 
+       RowBox[{
+        RowBox[{"Evaluate", "[", 
+         RowBox[{"sumFields", "[", 
+          RowBox[{
+          "currentStep", ",", "any3DMatrix", ",", "numPos", ",", "numNeg"}], 
+          "]"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"y", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"z", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "10"}], ",", 
+        RowBox[{"VectorScale", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"Large", ",", "Large"}], "}"}]}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"currentStep", ",", "1", ",", 
+        RowBox[{
+         RowBox[{"Dimensions", "[", "any3DMatrix", "]"}], "[", 
+         RowBox[{"[", "2", "]"}], "]"}], ",", "1"}], "}"}]}], "]"}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Walk", "[", "length_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"l", "=", "length"}], ",", "list", ",", "newlist"}], "}"}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"list", "=", 
+        RowBox[{"List", "[", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0", ",", "0"}], "}"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"newlist", "=", 
+        RowBox[{"List", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "0"}], ",", 
+         RowBox[{"i", "<", "l"}], ",", 
+         RowBox[{"i", "++"}], ",", 
+         RowBox[{
+          RowBox[{"rando", "=", 
+           RowBox[{"RandomReal", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"list", "=", 
+           RowBox[{"Append", "[", 
+            RowBox[{"list", ",", 
+             RowBox[{"Which", "[", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"rando", "\[LessEqual]", 
+                RowBox[{"1", "/", "6"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"rando", "\[LessEqual]", 
+                RowBox[{"2", "/", "6"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"rando", "\[LessEqual]", 
+                RowBox[{"3", "/", "6"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "0", ",", "1"}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"rando", "\[LessEqual]", 
+                RowBox[{"4", "/", "6"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "1"}], ",", "0", ",", "0"}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"rando", "\[LessEqual]", 
+                RowBox[{"5", "/", "6"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", 
+                 RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"rando", "\[LessEqual]", 
+                RowBox[{"6", "/", "6"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "0", ",", 
+                 RowBox[{"-", "1"}]}], "}"}]}], "\[IndentingNewLine]", 
+              "]"}]}], "\[IndentingNewLine]", "]"}]}]}]}], 
+        "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Accumulate", "[", "list", "]"}]}]}], "\[IndentingNewLine]", 
+     "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"createRandomWalkMatrix", "[", 
+     RowBox[{"TotalSteps_", ",", "TotalCharges_"}], "]"}], ":=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Walk", "[", "TotalSteps", "]"}], ",", "TotalCharges"}], 
+     "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.7845801865122447`*^9, 3.784580241298636*^9}, {
+   3.7845802924246335`*^9, 3.7845803000798264`*^9}, {3.7845803482156725`*^9, 
+   3.7845805267784777`*^9}, 3.784580567843961*^9, 3.784580622937442*^9, {
+   3.784581102349531*^9, 3.7845811092568827`*^9}, {3.784583191992527*^9, 
+   3.7845831958908195`*^9}, {3.784583342918197*^9, 3.7845833439802656`*^9}, {
+   3.7845835383304033`*^9, 3.7845835652138224`*^9}, {3.7845836530075684`*^9, 
+   3.7845837004300613`*^9}, {3.7845840136169877`*^9, 
+   3.7845840154287095`*^9}, {3.7845842715642924`*^9, 3.7845843296831627`*^9}, 
+   3.784584486178493*^9, {3.7845853334558315`*^9, 3.7845853506651497`*^9}, {
+   3.78458544424446*^9, 3.784585453368145*^9}, {3.784586197484701*^9, 
+   3.784586294173102*^9}, {3.784586337641179*^9, 3.7845863396113253`*^9}, {
+   3.7845864128825245`*^9, 3.784586445711858*^9}, {3.784586867690309*^9, 
+   3.7845869206484203`*^9}, {3.7845869719504604`*^9, 3.784586989368767*^9}, {
+   3.7845871246356735`*^9, 3.7845872026719637`*^9}, {3.7845872381737537`*^9, 
+   3.7845872649882145`*^9}, {3.784587329654348*^9, 3.7845874403064046`*^9}, {
+   3.7845875138879256`*^9, 3.7845876066568947`*^9}, {3.7845877584592667`*^9, 
+   3.784587784442233*^9}},
+ Background->RGBColor[0.88, 1, 0.88],
+ CellLabel->
+  "In[113]:=",ExpressionUUID->"f0928374-111b-45d1-9eba-102bc9301baa"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Change", " ", "this", " ", "stuff"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Insert", " ", "numSteps", " ", "and", " ", "number", " ", "of", " ", 
+    "positive", " ", "and", " ", "negative", " ", "Charges", " ", "below", 
+    " ", "and", " ", "run", " ", "it"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Steps", "=", "50"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"PositiveCharges", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"NegativeCharges", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "only", " ", "works", " ", "if", " ", "it", " ", "has", " ", "at", " ", 
+     "least", " ", "1", " ", "of", " ", "each", " ", "charge", " ", "and", 
+     " ", "more", " ", "than", " ", "0", " ", "steps"}], "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"TotCharges", "=", 
+     RowBox[{"PositiveCharges", "+", "NegativeCharges"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"createNotebookAnimation", "[", 
+    RowBox[{
+     RowBox[{"createRandomWalkMatrix", "[", 
+      RowBox[{"Steps", ",", "TotCharges"}], "]"}], ",", "PositiveCharges", 
+     ",", "NegativeCharges"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ANIM", "=", 
+     RowBox[{"createGifTable", "[", 
+      RowBox[{"createRandomWalkMatrix", "[", 
+       RowBox[{"Steps", ",", "Charges"}], "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<2-OppositeCharges.gif\>\"", ",", "ANIM", ",", 
+     RowBox[{"ImageResolution", "\[Rule]", "200"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.7845801462802815`*^9, 3.7845801832275057`*^9}, 
+   3.7845803468633533`*^9, {3.7845805415858135`*^9, 3.7845805493684664`*^9}, 
+   3.7845806536923857`*^9, 3.784581122560779*^9, {3.7845811834421396`*^9, 
+   3.7845812059763737`*^9}, {3.7845813085010433`*^9, 3.7845813119079795`*^9}, 
+   3.7845813436190233`*^9, {3.7845833053682528`*^9, 3.7845833296771927`*^9}, {
+   3.7845836647222805`*^9, 3.7845836648043065`*^9}, {3.784583808653836*^9, 
+   3.7845838343648243`*^9}, {3.7845839250901365`*^9, 
+   3.7845839252581673`*^9}, {3.784584381907543*^9, 3.784584429902733*^9}, {
+   3.784584668170967*^9, 3.7845846807037163`*^9}, {3.7845849178385353`*^9, 
+   3.7845849246480656`*^9}, {3.784585362452034*^9, 3.7845853822903643`*^9}, {
+   3.7845863478424697`*^9, 3.784586352115895*^9}, {3.7845868105350847`*^9, 
+   3.7845868572645273`*^9}, {3.7845869454550047`*^9, 
+   3.7845869592742133`*^9}, {3.7845869963962746`*^9, 3.784587106489293*^9}, {
+   3.7845877292084303`*^9, 3.784587740448598*^9}, {3.7845878535949345`*^9, 
+   3.784587855502076*^9}, {3.7845881170877666`*^9, 3.7845881400620203`*^9}},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->
+  "In[128]:=",ExpressionUUID->"02e3cc01-ff66-445f-8ba5-1e2a847d96e8"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`currentStep$$ = 47, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`currentStep$$], 1, 51, 1}}, Typeset`size$$ = {
+    396., {221., 228.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`currentStep$64513$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`currentStep$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`currentStep$$, $CellContext`currentStep$64513$$, 
+         0]}, "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> VectorPlot3D[
+        Evaluate[
+         $CellContext`sumFields[$CellContext`currentStep$$, CompressedData["
+1:eJyF04sJwzAMBFD5mzk6QzfpCB2g3Z8mTmPQwfWQqSDkIc5OHDu35/vxKmaW
+r+t+XdNRnVfhPiuRLTDGDTL3tRI5Uz7/6Q8y+ilw8vHq7GtmD3GhzLzXwNmt
+Y3V+zrfAhVzd5uO6GBl4Zjex+RxdnNxNbGTM03wtjdYIH+K+6Ffpa+FsJPs9
+J1Gf99TEQ8znBPsAD/IROEt/X+SH+KRnwXhP/r/Y0dmO5sE3wLPgg7yL06Jv
+vifIsJv0P0Fmle/kzZ3JhVzFGNvEyHRx93frlIe/LbOWBg==
+          "], 1, 1]], {$CellContext`x, -10, 10}, {$CellContext`y, -10, 
+         10}, {$CellContext`z, -10, 10}, PlotRange -> 10, 
+        VectorScale -> {Large, Large}], 
+      "Specifications" :> {{$CellContext`currentStep$$, 1, 51, 1, 
+         AppearanceElements -> {
+          "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
+           "DirectionButton"}}}, 
+      "Options" :> {
+       ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
+        "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
+        True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
+     ImageSizeCache->{451., {264., 271.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Animate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.7845863555715547`*^9, 3.7845864601632395`*^9, 
+  3.784587914738789*^9, 3.784588145171403*^9},
+ CellLabel->
+  "Out[132]=",ExpressionUUID->"862a51fa-3125-48d5-8eed-fab48e00f865"],
+
+Cell[BoxData["\<\"2-OppositeCharges.gif\"\>"], "Output",
+ CellChangeTimes->{3.7845863555715547`*^9, 3.7845864601632395`*^9, 
+  3.784587914738789*^9, 3.784588223775217*^9},
+ CellLabel->
+  "Out[134]=",ExpressionUUID->"de197dff-ef4a-41cf-8421-a9ce9f7f7eef"]
+}, Open  ]]
+},
+WindowSize->{680, 676},
+WindowMargins->{{-7, Automatic}, {Automatic, 0}},
+Magnification:>1.1 Inherited,
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 10969, 275, 1305, "Input",ExpressionUUID->"f0928374-111b-45d1-9eba-102bc9301baa"],
+Cell[CellGroupData[{
+Cell[11552, 299, 2898, 57, 337, "Input",ExpressionUUID->"02e3cc01-ff66-445f-8ba5-1e2a847d96e8"],
+Cell[14453, 358, 2668, 51, 556, "Output",ExpressionUUID->"862a51fa-3125-48d5-8eed-fab48e00f865"],
+Cell[17124, 411, 254, 4, 93, "Output",ExpressionUUID->"de197dff-ef4a-41cf-8421-a9ce9f7f7eef"]
+}, Open  ]]
+}
+]
+*)
+
